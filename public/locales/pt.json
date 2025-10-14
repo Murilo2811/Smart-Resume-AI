@@ -1,0 +1,284 @@
+
+{
+  "appTitle": "HireSight",
+  "nav": {
+    "home": "Início",
+    "features": "Recursos",
+    "start": "Começar Análise"
+  },
+  "auth": {
+    "login": {
+      "tab": "Entrar",
+      "title": "Bem-vindo de Volta",
+      "description": "Faça login em sua conta para continuar impulsionando sua carreira.",
+      "button": "Entrar"
+    },
+    "signup": {
+      "tab": "Cadastrar",
+      "title": "Crie uma Conta",
+      "description": "Comece a usar seu Co-piloto de Carreira com IA em segundos.",
+      "button": "Criar Conta"
+    },
+    "emailLabel": "E-mail",
+    "passwordLabel": "Senha",
+    "rememberMe": "Lembrar de mim"
+  },
+  "hero": {
+    "badge": "Seu Co-piloto de Carreira com IA",
+    "title": {
+      "line1": "Conquiste o Emprego dos Sonhos,",
+      "line2": "Com Inteligência."
+    },
+    "subtitle": "Pare de adivinhar. O HireSight analisa descrições de vagas contra o seu currículo, fornece uma pontuação de compatibilidade clara, reescreve seu currículo e te prepara para a entrevista. Seu próximo passo na carreira começa aqui.",
+    "cta": {
+      "primary": "Analisar Meu Currículo",
+      "secondary": "Como Funciona"
+    },
+    "stats": {
+        "stat1": {"value": "45%", "label": "Impulso na Candidatura"},
+        "stat2": {"value": "80%", "label": "Confiança na Entrevista"},
+        "stat3": {"value": "5k+", "label": "Carreiras Otimizadas"}
+    }
+  },
+  "features": {
+    "title": "Sua Vantagem Injusta no Mercado de Trabalho",
+    "subtitle": "Nossa plataforma foi projetada para lhe dar a vantagem que você precisa para ser contratado.",
+    "aiFeedback": {
+      "title": "Feedback Personalizado de IA",
+      "description": "Obtenha uma análise instantânea e imparcial de como seu currículo corresponde a uma vaga, destacando seus pontos fortes e áreas de melhoria."
+    },
+    "resumeRewrite": {
+      "title": "Reescrita Instantânea de Currículo",
+      "description": "Com um clique, nossa IA adapta seu currículo para corresponder perfeitamente às palavras-chave e requisitos da vaga que você deseja."
+    },
+    "secureData": {
+      "title": "Privacidade em Primeiro Lugar",
+      "description": "Seus dados são seus. Oferecemos um ambiente seguro sem armazenar seu currículo ou informações pessoais sensíveis."
+    },
+    "compatibilityScore": {
+      "title": "Pontuação de Compatibilidade Clara",
+      "description": "Entenda exatamente onde você se encaixa com uma pontuação baseada em dados, para que possa concentrar sua energia nas oportunidades certas."
+    },
+    "actionableInsights": {
+      "title": "Insights Acionáveis",
+      "description": "Receba um plano de ação personalizado e possíveis perguntas de entrevista para prepará-lo para os próximos passos."
+    },
+    "interviewPrep": {
+      "title": "Preparação para Entrevistas",
+      "description": "Analise o desempenho de sua entrevista simulada para ganhar confiança e aprimorar suas respostas antes do momento real."
+    }
+  },
+  "input": {
+    "title": "Inicie Sua Análise",
+    "subtitle": "Forneça a descrição da vaga e seu currículo. Seu Co-piloto de IA cuidará do resto.",
+    "job": {
+        "tab": "Descrição da Vaga",
+        "placeholder": "Cole a descrição completa da vaga aqui...",
+        "urlPlaceholder": "https://exemplo.com.br/vaga"
+    },
+    "resume": {
+        "tab": "Seu Currículo",
+        "placeholder": "Cole seu currículo completo aqui..."
+    },
+    "type": {
+        "text": "Colar Texto",
+        "url": "A partir de URL",
+        "file": "Carregar Arquivo"
+    },
+    "button": {
+        "analyze": "Executar Análise",
+        "loading": "Analisando..."
+    },
+    "loginPrompt": {
+        "text": "Por favor, faça login para executar uma análise.",
+        "button": "Entrar para Continuar"
+    }
+  },
+  "results": {
+      "score": {
+          "high": "Alta Compatibilidade",
+          "medium": "Boa Compatibilidade",
+          "low": "Precisa Melhorar"
+      },
+      "overallScore": {
+          "title": "Pontuação de Compatibilidade Geral"
+      },
+      "actions": {
+          "decision": "Gerar Decisão",
+          "consistency": "Analisar Entrevista",
+          "rewrite": "Reescrever Currículo com IA"
+      }
+  },
+  "analysis": {
+    "title": "Seu Relatório de Análise Personalizado",
+    "loading": "Seu Co-piloto de IA está analisando seus documentos...",
+    "placeholder": "Seu relatório de análise aparecerá aqui assim que a análise for concluída.",
+    "overallFit": "Pontuação de Compatibilidade Geral",
+    "summary": "Resumo da IA",
+    "fitExplanation": "Explicação da Compatibilidade",
+    "strengths": "Seus Pontos Fortes",
+    "areasForImprovement": "Áreas para Melhoria",
+    "actionPlan": "Seu Plano de Ação",
+    "keyResponsibilities": "Match de Responsabilidades Chave",
+    "requiredSkills": "Match de Habilidades Necessárias",
+    "niceToHaveSkills": "Match de Habilidades Desejáveis",
+    "potentialInterviewQuestions": "Possíveis Perguntas da Entrevista",
+    "companyCulture": "Alinhamento com a Cultura da Empresa",
+    "salaryAndBenefits": "Análise de Salário e Benefícios",
+    "none": "Nenhum item identificado."
+  },
+  "rewrite": {
+    "title": "Seu Currículo Otimizado por IA",
+    "subtitle": "Este currículo foi reescrito para destacar suas habilidades e experiências mais relevantes para esta vaga específica. Copie ou baixe para usar em sua candidatura.",
+    "loading": "Reescrevendo seu currículo..."
+  },
+  "interview": {
+    "title": "Análise de Desempenho na Entrevista",
+    "subtitle": "Pratique sua entrevista e depois cole a transcrição para receber feedback sobre seu desempenho.",
+    "transcriptLabel": "Transcrição da Entrevista",
+    "transcriptPlaceholder": "Cole a transcrição da sua entrevista simulada aqui para obter feedback...",
+    "transcriptInfo": "Fornecer uma transcrição permite que a IA analise sua comunicação, clareza e confiança.",
+    "button": "Analisar Meu Desempenho",
+    "buttonLoading": "Analisando...",
+    "loading": "Analisando seu desempenho na entrevista...",
+    "performanceScore": "Pontuação de Desempenho",
+    "missingFromInterview": "Oportunidades Perdidas do Currículo",
+    "demonstratedStrengths": "Pontos Fortes Demonstrados",
+    "summary": "Resumo do Desempenho",
+    "overallFeedback": "Feedback Geral",
+    "softSkillsAnalysis": "Análise de Soft Skills",
+    "areasToImproveClarity": "Áreas para Melhorar a Clareza",
+    "postInterviewFitScore": "Compatibilidade Pós-Entrevista",
+    "gapResolutions": "Como Você Abordou as Lacunas",
+    "gapLabel": "Lacuna Identificada",
+    "feedback": {
+      "excellent": "Excelente",
+      "good": "Bom",
+      "improvement": "Precisa Melhorar"
+    }
+  },
+  "consistencyInfo": {
+    "title": "Análise de Desempenho na Entrevista",
+    "intro1": "Esta é uma das ferramentas mais poderosas da plataforma HireSight, projetada para ajudá-lo a ter sucesso em sua entrevista.",
+    "whatIsItTitle": "O Que é a Análise de Desempenho na Entrevista?",
+    "whatIsItP1": "É uma análise profunda que a IA realiza para comparar, verificar e avaliar seu desempenho com base em três fontes principais:",
+    "whatIsItSources": {
+      "source1": "A Descrição da Vaga original.",
+      "source2": "O seu Currículo.",
+      "source3": "A transcrição da sua entrevista simulada."
+    },
+    "whatIsItP2": "O objetivo é ir além do que está no papel e fornecer feedback acionável sobre como se apresentar como o candidato perfeito para a vaga.",
+    "howItWorksTitle": "Como Funciona e Que Feedback Você Receberá",
+    "howItWorksP1": "Você fornece a transcrição da entrevista e a IA gera um relatório completo com os seguintes pontos:",
+    "features": {
+      "gapResolutions": {
+        "title": "Resolução de Lacunas",
+        "description": "Verifica se suas respostas esclareceram efetivamente as 'Áreas de Melhoria' identificadas na primeira análise. A IA informa se sua resposta foi convincente."
+      },
+      "performanceScore": {
+        "title": "Pontuação de Desempenho",
+        "description": "Um percentual que mede o quão bem você comunicou suas habilidades e experiência. Uma pontuação alta significa que você foi claro, confiante e consistente."
+      },
+      "clarity": {
+        "title": "Áreas para Melhorar a Clareza",
+        "description": "Destaca quaisquer respostas que foram vagas ou inconsistentes com seu currículo, fornecendo exemplos específicos de como melhorá-las."
+      },
+      "softSkills": {
+        "title": "Análise de Soft Skills",
+        "description": "Com base em sua linguagem, a IA avalia as soft skills que você demonstrou, como comunicação, resolução de problemas e atitude."
+      },
+      "strengths": {
+        "title": "Pontos Fortes Demonstrados",
+        "description": "Destaca as habilidades, experiências ou qualidades que você comunicou de forma eficaz, especialmente aquelas que não eram óbvias em seu currículo."
+      },
+      "missedOpportunities": {
+        "title": "Oportunidades Perdidas",
+        "description": "Identifica pontos importantes do seu currículo que você não mencionou, que poderiam ser pontos de venda poderosos para incluir da próxima vez."
+      },
+      "postInterviewScore": {
+        "title": "Pontuação de Compatibilidade Pós-Entrevista",
+        "description": "Sua pontuação de compatibilidade inicial é recalculada com base no seu desempenho na entrevista, mostrando o quanto você melhorou sua posição."
+      },
+      "overallFeedback": {
+        "title": "Feedback Geral",
+        "description": "Com base em todos os dados, a IA fornece uma avaliação final e clara do desempenho: 'Excelente', 'Bom' ou 'Precisa Melhorar'."
+      }
+    },
+    "conclusion": "Essencialmente, a Análise de Desempenho na Entrevista é o seu 'treinador de entrevistas' pessoal, garantindo que você esteja o mais preparado, confiante e eficaz possível."
+  },
+  "status": {
+    "match": "Compatível",
+    "partial": "Parcial",
+    "nomatch": "Não Compatível"
+  },
+  "buttons": {
+    "back": "Voltar",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "downloadResume": "Baixar Currículo",
+    "downloadPdf": "Baixar Relatório PDF"
+  },
+  "settings": {
+    "title": "Configurações",
+    "subtitle": "Gerenciar Chaves de API",
+    "description": "Suas chaves de API são armazenadas de forma segura no armazenamento local do seu navegador e nunca são enviadas para nossos servidores. Deixe um campo em branco se você não usar esse provedor.",
+    "openaiKey": "Chave de API para modelos como o GPT-4o.",
+    "anthropicKey": "Chave de API para modelos Claude.",
+    "groqKey": "Chave de API para modelos LLaMA e Mixtral no Groq.",
+    "keyPlaceholder": "Digite sua chave de API...",
+    "gemini": {
+        "infoTitle": "Chave de API do Gemini",
+        "infoMessage": "A chave de API do Gemini é configurada de forma segura através de uma variável de ambiente (API_KEY) e não pode ser definida na interface do usuário."
+    },
+    "aiProvider": {
+        "title": "Configuração do Modelo de IA",
+        "description": "Selecione o provedor e o modelo que deseja usar para a análise. Alguns provedores exigem uma chave de API nas configurações.",
+        "providerLabel": "Provedor de IA",
+        "modelLabel": "Modelo"
+    }
+  },
+  "profile": {
+    "title": "Meu Perfil",
+    "subtitle": "Gerencie as informações da sua conta.",
+    "name": "Nome Completo",
+    "email": "Endereço de E-mail",
+    "company": "Empresa Atual (Opcional)",
+    "role": "Cargo Atual (Opcional)",
+    "updateButton": "Atualizar Perfil",
+    "changePassword": "Alterar Senha"
+  },
+  "userNav": {
+    "profile": "Perfil",
+    "settings": "Configurações",
+    "logout": "Sair"
+  },
+  "error": {
+    "title": "Ocorreu um Erro",
+    "jobDescriptionMissing": "A descrição da vaga é obrigatória.",
+    "resumeMissing": "O currículo é obrigatório.",
+    "unknown": "Ocorreu um erro desconhecido. Verifique o console para mais detalhes.",
+    "boundaryTitle": "Algo deu errado",
+    "boundaryMessage": "Desculpe, mas a aplicação encontrou um erro inesperado. Por favor, tente atualizar a página.",
+    "boundaryDetails": "Detalhes do Erro",
+    "geminiKeyMissing": "A Chave de API do Google Gemini não foi encontrada. Ela deve ser configurada como uma variável de ambiente.",
+    "openaiKeyMissing": "A Chave de API da OpenAI não foi encontrada. Por favor, adicione-a nas configurações.",
+    "anthropicKeyMissing": "A Chave de API da Anthropic não foi encontrada. Por favor, adicione-a nas configurações.",
+    "groqKeyMissing": "A Chave de API da Groq não foi encontrada. Por favor, adicione-a nas configurações.",
+    "serviceNotInitialized": "O serviço de IA não foi inicializado. Verifique as configurações da sua chave de API."
+  },
+  "toast": {
+      "success": {
+        "analyze": "Análise concluída! Aqui está seu relatório.",
+        "analyzeInterviewPerformance": "Análise da entrevista concluída!",
+        "rewriteResume": "Currículo reescrito com sucesso!",
+        "saveSettings": "Configurações salvas com sucesso!"
+      }
+  },
+  "tooltips": {
+    "postInterviewFitScore": "Esta é sua pontuação final de compatibilidade, recalculada após considerar seu desempenho na entrevista.",
+    "performanceScore": "Mede o quão bem suas respostas na entrevista se alinharam ao seu currículo e aos requisitos da vaga.",
+    "overallFeedback": "Um veredito geral sobre o seu desempenho na entrevista.",
+    "compatibilityGaps": "Habilidades ou experiências específicas exigidas pela vaga que não foram encontradas em seu currículo. Estas são áreas chave para abordar em uma entrevista.",
+    "areasForImprovement": "Potenciais preocupações ou inconsistências que você deve estar preparado para discutir."
+  }
+}

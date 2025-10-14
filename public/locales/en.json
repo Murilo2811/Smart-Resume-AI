@@ -1,0 +1,284 @@
+
+{
+  "appTitle": "HireSight",
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "start": "Start Analyzing"
+  },
+  "auth": {
+    "login": {
+      "tab": "Log In",
+      "title": "Welcome Back",
+      "description": "Log in to your account to continue boosting your career.",
+      "button": "Log In"
+    },
+    "signup": {
+      "tab": "Sign Up",
+      "title": "Create an Account",
+      "description": "Get started with your AI Career Co-Pilot in seconds.",
+      "button": "Create Account"
+    },
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "rememberMe": "Remember me"
+  },
+  "hero": {
+    "badge": "Your AI-Powered Career Co-Pilot",
+    "title": {
+      "line1": "Land Your Dream Job,",
+      "line2": "Smarter."
+    },
+    "subtitle": "Stop guessing. HireSight analyzes job descriptions against your resume, gives you a clear compatibility score, rewrites your resume, and prepares you for the interview. Your next career move starts here.",
+    "cta": {
+      "primary": "Analyze My Resume",
+      "secondary": "How It Works"
+    },
+    "stats": {
+        "stat1": {"value": "45%", "label": "Application Boost"},
+        "stat2": {"value": "80%", "label": "Interview Confidence"},
+        "stat3": {"value": "5k+", "label": "Careers Optimized"}
+    }
+  },
+  "features": {
+    "title": "Your Unfair Advantage in the Job Market",
+    "subtitle": "Our platform is designed to give you the edge you need to get hired.",
+    "aiFeedback": {
+      "title": "Personalized AI Feedback",
+      "description": "Get an instant, unbiased analysis of how your resume matches a job, highlighting your strengths and areas for improvement."
+    },
+    "resumeRewrite": {
+      "title": "Instant Resume Rewrite",
+      "description": "With one click, our AI tailors your resume to perfectly match the keywords and requirements of the job you want."
+    },
+    "secureData": {
+      "title": "Data Privacy First",
+      "description": "Your data is yours. We provide a secure environment without storing your sensitive resume or personal information."
+    },
+    "compatibilityScore": {
+      "title": "Clear Compatibility Score",
+      "description": "Understand exactly where you stand with a data-driven score, so you can focus your energy on the right opportunities."
+    },
+    "actionableInsights": {
+      "title": "Actionable Insights",
+      "description": "Receive a custom action plan and potential interview questions to prepare you for the next steps."
+    },
+    "interviewPrep": {
+      "title": "Interview Preparation",
+      "description": "Analyze your mock interview performance to gain confidence and polish your answers before the real thing."
+    }
+  },
+  "input": {
+    "title": "Start Your Analysis",
+    "subtitle": "Provide the job description and your resume. Your AI Co-Pilot will handle the rest.",
+    "job": {
+        "tab": "Job Description",
+        "placeholder": "Paste the full job description here...",
+        "urlPlaceholder": "https://example.com/job-posting"
+    },
+    "resume": {
+        "tab": "Your Resume",
+        "placeholder": "Paste your full resume here..."
+    },
+    "type": {
+        "text": "Paste Text",
+        "url": "From URL",
+        "file": "Upload File"
+    },
+    "button": {
+        "analyze": "Run Analysis",
+        "loading": "Analyzing..."
+    },
+    "loginPrompt": {
+        "text": "Please log in to run an analysis.",
+        "button": "Log In to Continue"
+    }
+  },
+  "results": {
+      "score": {
+          "high": "Strong Match",
+          "medium": "Good Match",
+          "low": "Needs Improvement"
+      },
+      "overallScore": {
+          "title": "Overall Compatibility Score"
+      },
+      "actions": {
+          "decision": "Generate Decision",
+          "consistency": "Analyze Interview",
+          "rewrite": "AI-Rewrite My Resume"
+      }
+  },
+  "analysis": {
+    "title": "Your Personalized Analysis Report",
+    "loading": "Your AI Co-Pilot is analyzing your documents...",
+    "placeholder": "Your analysis report will appear here once the analysis is complete.",
+    "overallFit": "Overall Fit Score",
+    "summary": "AI Summary",
+    "fitExplanation": "Fit Explanation",
+    "strengths": "Your Strengths",
+    "areasForImprovement": "Areas for Improvement",
+    "actionPlan": "Your Action Plan",
+    "keyResponsibilities": "Key Responsibilities Match",
+    "requiredSkills": "Required Skills Match",
+    "niceToHaveSkills": "Nice-to-Have Skills Match",
+    "potentialInterviewQuestions": "Potential Interview Questions",
+    "companyCulture": "Company Culture Alignment",
+    "salaryAndBenefits": "Salary & Benefits Analysis",
+    "none": "None identified."
+  },
+  "rewrite": {
+    "title": "Your AI-Optimized Resume",
+    "subtitle": "This resume has been rewritten to highlight your most relevant skills and experiences for this specific role. Copy it or download it to use in your application.",
+    "loading": "Rewriting your resume..."
+  },
+  "interview": {
+    "title": "Interview Performance Analysis",
+    "subtitle": "Practice your interview, then paste the transcript to get feedback on your performance.",
+    "transcriptLabel": "Interview Transcript",
+    "transcriptPlaceholder": "Paste your mock interview transcript here to get feedback...",
+    "transcriptInfo": "Providing a transcript allows the AI to analyze your communication, clarity, and confidence.",
+    "button": "Analyze My Performance",
+    "buttonLoading": "Analyzing...",
+    "loading": "Analyzing your interview performance...",
+    "performanceScore": "Performance Score",
+    "missingFromInterview": "Missed Opportunities from Your Resume",
+    "demonstratedStrengths": "Strengths You Demonstrated",
+    "summary": "Performance Summary",
+    "overallFeedback": "Overall Feedback",
+    "softSkillsAnalysis": "Soft Skills Analysis",
+    "areasToImproveClarity": "Areas to Improve Clarity",
+    "postInterviewFitScore": "Post-Interview Fit Score",
+    "gapResolutions": "How You Addressed Gaps",
+    "gapLabel": "Identified Gap",
+    "feedback": {
+      "excellent": "Excellent",
+      "good": "Good",
+      "improvement": "Needs Improvement"
+    }
+  },
+  "consistencyInfo": {
+    "title": "Interview Performance Analysis",
+    "intro1": "This is one of the most powerful tools on the HireSight platform, designed to help you ace your interview.",
+    "whatIsItTitle": "What is the Interview Performance Analysis?",
+    "whatIsItP1": "It's a deep analysis that the AI performs to compare, verify, and evaluate your performance based on three main sources:",
+    "whatIsItSources": {
+      "source1": "The original Job Description.",
+      "source2": "Your Resume.",
+      "source3": "The transcript of your mock interview."
+    },
+    "whatIsItP2": "The goal is to go beyond what's on paper and give you actionable feedback on how to present yourself as the perfect candidate for the job.",
+    "howItWorksTitle": "How It Works and What Feedback You'll Get",
+    "howItWorksP1": "You provide the interview transcript, and the AI generates a complete report with the following points:",
+    "features": {
+      "gapResolutions": {
+        "title": "Gap Resolutions",
+        "description": "Checks if your answers effectively clarified the 'Areas for Improvement' identified in the first analysis. The AI tells you if your response was convincing."
+      },
+      "performanceScore": {
+        "title": "Performance Score",
+        "description": "A percentage that measures how well you communicated your skills and experience. A high score means you were clear, confident, and consistent."
+      },
+      "clarity": {
+        "title": "Areas to Improve Clarity",
+        "description": "Highlights any answers that were vague or inconsistent with your resume, giving you specific examples on how to improve them."
+      },
+      "softSkills": {
+        "title": "Soft Skills Analysis",
+        "description": "Based on your language, the AI assesses the soft skills you demonstrated, such as communication, problem-solving, and attitude."
+      },
+      "strengths": {
+        "title": "Demonstrated Strengths",
+        "description": "Highlights the skills, experiences, or qualities that you communicated effectively, especially ones that weren't obvious on your resume."
+      },
+      "missedOpportunities": {
+        "title": "Missed Opportunities",
+        "description": "Identifies important points from your resume that you didn't mention, which could be powerful selling points to include next time."
+      },
+      "postInterviewScore": {
+        "title": "Post-Interview Fit Score",
+        "description": "Your initial compatibility score is recalculated based on your interview performance, showing how much you improved your standing."
+      },
+      "overallFeedback": {
+        "title": "Overall Feedback",
+        "description": "Based on all the data, the AI provides a final, clear performance review: 'Excellent', 'Good', or 'Needs Improvement'."
+      }
+    },
+    "conclusion": "Essentially, the Interview Performance Analysis is your personal 'interview coach' ensuring you are as prepared, confident, and effective as possible."
+  },
+  "status": {
+    "match": "Match",
+    "partial": "Partial",
+    "nomatch": "No Match"
+  },
+  "buttons": {
+      "back": "Back",
+      "save": "Save",
+      "cancel": "Cancel",
+      "downloadResume": "Download Resume",
+      "downloadPdf": "Download PDF Report"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage API Keys",
+    "description": "Your API keys are stored securely in your browser's local storage and are never sent to our servers. Leave a field blank if you don't use that provider.",
+    "openaiKey": "API key for models like GPT-4o.",
+    "anthropicKey": "API key for Claude models.",
+    "groqKey": "API key for LLaMA and Mixtral models on Groq.",
+    "keyPlaceholder": "Enter your API key...",
+    "gemini": {
+        "infoTitle": "Gemini API Key",
+        "infoMessage": "The Gemini API key is configured securely via an environment variable (API_KEY) and cannot be set in the user interface."
+    },
+    "aiProvider": {
+        "title": "AI Model Configuration",
+        "description": "Select the provider and model you wish to use for the analysis. Some providers require an API key in the settings.",
+        "providerLabel": "AI Provider",
+        "modelLabel": "Model"
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your account information.",
+    "name": "Full Name",
+    "email": "Email Address",
+    "company": "Current Company (Optional)",
+    "role": "Current Role (Optional)",
+    "updateButton": "Update Profile",
+    "changePassword": "Change Password"
+  },
+  "userNav": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log Out"
+  },
+  "error": {
+    "title": "An Error Occurred",
+    "jobDescriptionMissing": "Job description is missing.",
+    "resumeMissing": "Resume is missing.",
+    "unknown": "An unknown error occurred. Please check the console for details.",
+    "boundaryTitle": "Something went wrong",
+    "boundaryMessage": "We're sorry, but the application encountered an unexpected error. Please try refreshing the page.",
+    "boundaryDetails": "Error Details",
+    "geminiKeyMissing": "Google Gemini API Key is missing. It must be configured as an environment variable.",
+    "openaiKeyMissing": "OpenAI API Key is missing. Please add it in the settings.",
+    "anthropicKeyMissing": "Anthropic API Key is missing. Please add it in the settings.",
+    "groqKeyMissing": "Groq API Key is missing. Please add it in the settings.",
+    "serviceNotInitialized": "AI service is not initialized. Please check your API key settings."
+  },
+  "toast": {
+      "success": {
+        "analyze": "Analysis complete! Here's your report.",
+        "analyzeInterviewPerformance": "Interview analysis complete!",
+        "rewriteResume": "Resume rewritten successfully!",
+        "saveSettings": "Settings saved successfully!"
+      }
+  },
+  "tooltips": {
+    "postInterviewFitScore": "This is your final compatibility score, recalculated after considering your interview performance.",
+    "performanceScore": "Measures how well your interview answers aligned with your resume and the job requirements.",
+    "overallFeedback": "An overall verdict on your interview performance.",
+    "compatibilityGaps": "Specific skills or experiences required by the job that were not found in your resume. These are key areas to address in an interview.",
+    "areasForImprovement": "Potential concerns or inconsistencies that you should be prepared to discuss."
+  }
+}

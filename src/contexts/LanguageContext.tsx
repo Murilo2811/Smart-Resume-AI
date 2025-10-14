@@ -1,0 +1,97 @@
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+
+type Language = 'en' | 'pt' | 'es';
+type Translations = { [key: string]: string };
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+const getInitialLanguage = (): Language => {
+    if (typeof navigator !== 'undefined' && navigator.language) {
+        const browserLang = navigator.language.toLowerCase();
+        if (browserLang.startsWith('pt')) return 'pt';
+        if (browserLang.startsWith('es')) return 'es';
+    }
+    return 'en';
+};
+
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>(() => {
+    const savedLang = localStorage.getItem('language');
+    if (savedLang === 'en' || savedLang === 'pt' || savedLang === 'es') {
+        return savedLang;
+    }
+    return getInitialLanguage();
+  });
+  
+  const [translations, setTranslations] = useState<{ en: Translations, pt: Translations, es: Translations }>({ en: {}, pt: {}, es: {} });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTranslations = async () => {
+      try {
+        const [enResponse, ptResponse, esResponse] = await Promise.all([
+          fetch('/locales/en.json'),
+          fetch('/locales/pt.json'),
+          fetch('/locales/es.json')
+        ]);
+        if (!enResponse.ok || !ptResponse.ok || !esResponse.ok) {
+            throw new Error('Failed to load translation files.');
+        }
+        const enData = await enResponse.json();
+        const ptData = await ptResponse.json();
+        const esData = await esResponse.json();
+        setTranslations({ en: enData, pt: ptData, es: esData });
+      } catch (error) {
+        console.error("Failed to fetch translations:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchTranslations();
+  }, []);
+
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang);
+    localStorage.setItem('language', lang);
+  }
+
+  const t = (key: string): string => {
+    const langTranslations = translations[language];
+    // Simple dot notation traversal
+    const keys = key.split('.');
+    let result: any = langTranslations;
+    for (const k of keys) {
+        result = result?.[k];
+        if (result === undefined) return key;
+    }
+    return result || key;
+  };
+  
+  if (isLoading) {
+    return (
+        <div className="flex justify-center items-center h-screen bg-background">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary"></div>
+        </div>
+    );
+  }
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useTranslations = () => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useTranslations must be used within a LanguageProvider');
+  }
+  return context;
+};
