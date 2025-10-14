@@ -11,25 +11,28 @@ interface ErrorBoundaryState {
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  // Fix: Switched to a constructor for state initialization.
-  // This is a more traditional and robust way to define state in class components,
-  // ensuring `this.props` is available and avoiding potential issues with
-  // build configurations that might not fully support the class property syntax.
+  // Fix: The original error "Property 'props' does not exist on type 'ErrorBoundary'"
+  // can be caused by subtle TypeScript configuration issues with class property
+  // initializers. Switching to a constructor for state initialization is a more
+  // robust pattern that avoids these potential pitfalls.
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
+  public static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    // Update state so the next render will show the fallback UI.
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  public componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    // You can also log the error to an error reporting service
     console.error("Uncaught error:", error, errorInfo);
   }
 
-  render() {
+  public render() {
     if (this.state.hasError) {
+      // You can render any custom fallback UI
       return (
         <div className="bg-background text-foreground min-h-screen p-8 font-sans">
           <h1 className="text-3xl font-bold text-destructive border-b pb-4 mb-4">{this.props.t('error.boundaryTitle')}</h1>
@@ -46,7 +49,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
       );
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 
