@@ -1,6 +1,4 @@
 
-
-
 import { GoogleGenAI } from "@google/genai";
 import {
     CandidateAnalysisResult,
@@ -135,7 +133,6 @@ Your goal is to provide a complete performance review for the candidate based on
             resumePart,
             { text: "Target Job Description:" },
             jobPart,
-// FIX: Escaped the backticks inside the template literal to prevent syntax errors.
             { text: `
 **Task: Rewrite the Resume**
 
@@ -157,9 +154,9 @@ Follow these strict rules:
 ${historyText.length > 0 ? historyText : "No previous conversation."}
 
 **Your Instructions:**
-- If there is a conversation history, address the user's latest instruction. Your \`chatResponse\` should directly acknowledge their request. Then, generate the complete, updated resume in the \`rewrittenResume\` field.
-- If there is no history, this is the first rewrite. Your \`chatResponse\` should be a brief, welcoming sentence. Then, generate the rewritten resume.
-- The output must be the complete, rewritten resume text in a single Markdown string in the \`rewrittenResume\` field of the JSON.`}
+- If there is a conversation history, address the user's latest instruction. Your 'chatResponse' should directly acknowledge their request. Then, generate the complete, updated resume in the 'rewrittenResume' field.
+- If there is no history, this is the first rewrite. Your 'chatResponse' should be a brief, welcoming sentence. Then, generate the rewritten resume.
+- The output must be the complete, rewritten resume text in a single Markdown string in the 'rewrittenResume' field of the JSON.`}
         ];
 
         const response = await this.ai.models.generateContent({
