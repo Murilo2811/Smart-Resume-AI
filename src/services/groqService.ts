@@ -1,8 +1,10 @@
 
+
 import {
     CandidateAnalysisResult,
     InterviewPerformanceResult,
     RewrittenResumeResult,
+    ChatTurn,
 } from '../types';
 import { LLMService, GeminiInput } from './llmService';
 
@@ -24,17 +26,20 @@ export class GroqService implements LLMService {
             en: {
                 summary: "This is a mock summary from the Groq service.",
                 fitExplanation: "This is a mock explanation from the Groq service.",
-                rewrittenResume: "## Mock Rewritten Resume\n\nThis is a mock resume from Groq service."
+                rewrittenResume: "## Mock Rewritten Resume\n\nThis is a mock resume from Groq service.",
+                chatResponse: "Here is the rewritten resume, based on my analysis as a Groq model."
             },
             pt: {
                 summary: "Este é um resumo de exemplo do serviço Groq.",
                 fitExplanation: "Esta é uma explicação de exemplo do serviço Groq.",
-                rewrittenResume: "## Exemplo de Currículo Reescrito\n\nEste é um currículo de exemplo do serviço Groq."
+                rewrittenResume: "## Exemplo de Currículo Reescrito\n\nEste é um currículo de exemplo do serviço Groq.",
+                chatResponse: "Aqui está o currículo reescrito, com base na minha análise como um modelo Groq."
             },
             es: {
                 summary: "Este es un resumen de prueba del servicio Groq.",
                 fitExplanation: "Esta es una explicación de prueba del servicio Groq.",
-                rewrittenResume: "## Currículum Reescrito de Prueba\n\nEste es un currículum de prueba del servicio Groq."
+                rewrittenResume: "## Currículum Reescrito de Prueba\n\nEste es un currículum de prueba del servicio Groq.",
+                chatResponse: "Aquí está el currículum reescrito, basado en mi análisis como modelo de Groq."
             }
         };
         const selectedText = textContent[language as 'en' | 'pt' | 'es'] || textContent.en;
@@ -62,7 +67,8 @@ export class GroqService implements LLMService {
             demonstratedStrengths: { items: [], score: 50 },
             gapResolutions: { items: [], score: 50 },
             postInterviewFitScore: 50,
-            rewrittenResume: selectedText.rewrittenResume
+            rewrittenResume: selectedText.rewrittenResume,
+            chatResponse: selectedText.chatResponse,
         });
     }
 
@@ -74,7 +80,7 @@ export class GroqService implements LLMService {
         return this.getMockResponse(language);
     }
 
-    async rewriteResumeForJob(jobInput: GeminiInput, resumeInput: GeminiInput, language: string): Promise<RewrittenResumeResult> {
+    async rewriteResumeForJob(jobInput: GeminiInput, resumeInput: GeminiInput, language: string, chatHistory: ChatTurn[]): Promise<RewrittenResumeResult> {
         return this.getMockResponse(language);
     }
 }

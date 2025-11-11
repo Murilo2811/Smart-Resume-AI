@@ -1,4 +1,5 @@
 
+
 {
   "appTitle": "HireSight",
   "nav": {
@@ -129,8 +130,12 @@
   },
   "rewrite": {
     "title": "Seu Currículo Otimizado por IA",
-    "subtitle": "Este currículo foi reescrito para destacar suas habilidades e experiências mais relevantes para esta vaga específica. Copie ou baixe para usar em sua candidatura.",
+    "subtitle": "Este currículo foi reescrito para destacar suas habilidades e experiências mais relevantes para esta vaga específica. Use o chat abaixo para refiná-lo ainda mais.",
     "loading": "Reescrevendo seu currículo..."
+  },
+  "chat": {
+    "placeholder": "Ex: Torne o resumo mais conciso...",
+    "button": "Enviar"
   },
   "interview": {
     "title": "Análise de Desempenho na Entrevista",

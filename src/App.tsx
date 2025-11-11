@@ -1,8 +1,9 @@
 
+
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useTranslations } from './contexts/LanguageContext';
 import { getLlmService, GeminiInput } from './services/llmService';
-import { CandidateAnalysisResult, InterviewPerformanceResult, RewrittenResumeResult, LlmConfig } from './types';
+import { CandidateAnalysisResult, InterviewPerformanceResult, RewrittenResumeResult, LlmConfig, ChatTurn } from './types';
 import { toast } from './components/ui/Toast';
 import AuthPage from './components/AuthPage';
 import Navbar from './components/sections/Navbar';
@@ -58,6 +59,7 @@ const App: React.FC = () => {
   const [rewrittenResume, setRewrittenResume] = useState<RewrittenResumeResult | null>(null);
   const [interviewTranscript, setInterviewTranscript] = useState('');
   const [lastAnalysisInputs, setLastAnalysisInputs] = useState<{ jobInput: GeminiInput; resumeInput: GeminiInput } | null>(null);
+  const [chatHistory, setChatHistory] = useState<ChatTurn[]>([]);
   
   const [isLoading, setIsLoading] = useState(false);
   const [activeAnalysis, setActiveAnalysis] = useState<string | null>(null);
@@ -109,7 +111,9 @@ const App: React.FC = () => {
     try {
       const result = await analysisFn();
       stateSetter(result);
-      toast.success(t(`toast.success.${analysisType}`));
+      if (analysisType !== 'sendChatMessage') { // Don't toast for every chat message
+          toast.success(t(`toast.success.${analysisType}`));
+      }
       return result; // Return result for chaining
     } catch (e) {
       const errorMessage = e instanceof Error ? e.message : 'error.unknown';
@@ -126,6 +130,7 @@ const App: React.FC = () => {
     setAnalysisResult(null);
     setInterviewPerformance(null);
     setRewrittenResume(null);
+    setChatHistory([]);
 
     const result = await executeAnalysis(
       () => llmService.analyzeForCandidate(inputs.jobInput, inputs.resumeInput, language),
@@ -149,10 +154,32 @@ const App: React.FC = () => {
 
   const handleRewriteResume = async () => {
     if (!lastAnalysisInputs || !llmService) return;
+    // This is the first rewrite, so chat history is empty
+    setChatHistory([]);
     await executeAnalysis(
-      () => llmService.rewriteResumeForJob(lastAnalysisInputs.jobInput, lastAnalysisInputs.resumeInput, language),
-      setRewrittenResume,
+      () => llmService.rewriteResumeForJob(lastAnalysisInputs.jobInput, lastAnalysisInputs.resumeInput, language, []),
+      (result: RewrittenResumeResult) => {
+          setRewrittenResume(result);
+          // Start the chat history with the AI's first response
+          setChatHistory([{ role: 'model', text: result.chatResponse }]);
+      },
       'rewriteResume'
+    );
+  };
+
+  const handleSendChatMessage = async (message: string) => {
+    if (!lastAnalysisInputs || !llmService || !message) return;
+
+    const newHistory: ChatTurn[] = [...chatHistory, { role: 'user', text: message }];
+    setChatHistory(newHistory);
+
+    await executeAnalysis(
+      () => llmService.rewriteResumeForJob(lastAnalysisInputs.jobInput, lastAnalysisInputs.resumeInput, language, newHistory),
+      (result: RewrittenResumeResult) => {
+        setRewrittenResume(result);
+        setChatHistory(prev => [...prev, { role: 'model', text: result.chatResponse }]);
+      },
+      'sendChatMessage'
     );
   };
 
@@ -230,6 +257,8 @@ const App: React.FC = () => {
                                 activeAnalysis={activeAnalysis}
                                 onDownloadPdf={handleDownloadPdf}
                                 isDownloadingPdf={isDownloadingPdf}
+                                chatHistory={chatHistory}
+                                onSendChatMessage={handleSendChatMessage}
                             />
                         </div>
                     )}

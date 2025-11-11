@@ -1,4 +1,5 @@
 
+
 export type MatchStatus = 'Match' | 'Partial' | 'No Match';
 
 export type MatchedItem = {
@@ -59,7 +60,14 @@ export type InterviewPerformanceResult = {
 
 export type RewrittenResumeResult = {
   rewrittenResume: string;
+  chatResponse: string;
 };
+
+export type ChatTurn = {
+    role: 'user' | 'model';
+    text: string;
+};
+
 
 // --- New Types for Multi-LLM Support ---
 

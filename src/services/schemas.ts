@@ -1,4 +1,5 @@
 
+
 import { Type } from "@google/genai";
 
 export const matchedItemSchema = {
@@ -148,7 +149,8 @@ export const interviewPerformanceSchema = {
 export const rewrittenResumeSchema = {
     type: Type.OBJECT,
     properties: {
+        chatResponse: { type: Type.STRING, description: "A short, conversational response. For the first generation, use a brief introductory sentence like 'Here is the first draft of your resume tailored for this role.' For subsequent edits, respond directly to the user's last instruction." },
         rewrittenResume: { type: Type.STRING, description: "The full text of the rewritten resume in Markdown format." }
     },
-    required: ['rewrittenResume']
+    required: ['chatResponse', 'rewrittenResume']
 };

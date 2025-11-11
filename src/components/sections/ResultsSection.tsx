@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { useTranslations } from '../../contexts/LanguageContext';
 import {
@@ -7,6 +8,7 @@ import {
   RewrittenResumeResult,
   MatchStatus,
   MatchedItem,
+  ChatTurn,
 } from '../../types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/Card';
 import { Button } from '../ui/Button';
@@ -18,6 +20,7 @@ import { Textarea } from '../ui/Textarea';
 import { Label } from '../ui/Label';
 import ConsistencyInfoModal from '../ConsistencyInfoModal';
 import Tooltip from '../ui/Tooltip';
+import ResumeChat from '../ResumeChat';
 
 interface ResultsSectionProps {
   analysisResult: CandidateAnalysisResult;
@@ -31,6 +34,8 @@ interface ResultsSectionProps {
   setInterviewTranscript: (value: string) => void;
   isLoading: boolean;
   activeAnalysis: string | null;
+  chatHistory: ChatTurn[];
+  onSendChatMessage: (message: string) => void;
 }
 
 // Helper component for section titles
@@ -93,6 +98,8 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({
   setInterviewTranscript,
   isLoading,
   activeAnalysis,
+  chatHistory,
+  onSendChatMessage,
 }) => {
   const { t } = useTranslations();
   const [isConsistencyInfoModalOpen, setIsConsistencyInfoModalOpen] = useState(false);
@@ -176,13 +183,22 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({
             <CardContent>
                 {rewrittenResume ? (
                      <>
+                        <div className="flex justify-end mb-2">
+                             <Button variant="outline" size="sm" onClick={handleDownloadResume}>
+                                <DownloadIcon className="mr-2 h-4 w-4" />
+                                {t('buttons.downloadResume')}
+                            </Button>
+                        </div>
                         <pre className="whitespace-pre-wrap font-sans text-sm bg-muted/50 p-4 rounded-md border max-h-96 overflow-y-auto">
                             {rewrittenResume.rewrittenResume}
                         </pre>
-                         <Button variant="outline" size="sm" onClick={handleDownloadResume} className="mt-4">
-                            <DownloadIcon className="mr-2 h-4 w-4" />
-                            {t('buttons.downloadResume')}
-                        </Button>
+                        <div className="mt-4 border-t pt-4">
+                            <ResumeChat 
+                                history={chatHistory}
+                                onSendMessage={onSendChatMessage}
+                                isLoading={isLoading && activeAnalysis === 'sendChatMessage'}
+                            />
+                        </div>
                     </>
                 ) : (
                     <Button size="lg" variant="default" onClick={onRewriteResume} disabled={isLoading} className="w-full">

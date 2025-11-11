@@ -1,8 +1,10 @@
 
+
 import {
     CandidateAnalysisResult,
     InterviewPerformanceResult,
     RewrittenResumeResult,
+    ChatTurn,
 } from '../types';
 import { LLMService, GeminiInput } from './llmService';
 
@@ -24,17 +26,20 @@ export class OpenAIService implements LLMService {
             en: {
                 summary: "This is a mock summary from the OpenAI service.",
                 fitExplanation: "This is a mock explanation from the OpenAI service.",
-                rewrittenResume: "## Mock Rewritten Resume\n\nThis is a mock resume from OpenAI service."
+                rewrittenResume: "## Mock Rewritten Resume\n\nThis is a mock resume from OpenAI service.",
+                chatResponse: "Here is the rewritten resume, based on my analysis as an OpenAI model."
             },
             pt: {
                 summary: "Este é um resumo de exemplo do serviço OpenAI.",
                 fitExplanation: "Esta é uma explicação de exemplo do serviço OpenAI.",
-                rewrittenResume: "## Exemplo de Currículo Reescrito\n\nEste é um currículo de exemplo do serviço OpenAI."
+                rewrittenResume: "## Exemplo de Currículo Reescrito\n\nEste é um currículo de exemplo do serviço OpenAI.",
+                chatResponse: "Aqui está o currículo reescrito, com base na minha análise como um modelo OpenAI."
             },
             es: {
                 summary: "Este es un resumen de prueba del servicio OpenAI.",
                 fitExplanation: "Esta es una explicación de prueba del servicio OpenAI.",
-                rewrittenResume: "## Currículum Reescrito de Prueba\n\nEste es un currículum de prueba del servicio OpenAI."
+                rewrittenResume: "## Currículum Reescrito de Prueba\n\nEste es un currículum de prueba del servicio OpenAI.",
+                chatResponse: "Aquí está el currículum reescrito, basado en mi análisis como modelo de OpenAI."
             }
         };
         const selectedText = textContent[language as 'en' | 'pt' | 'es'] || textContent.en;
@@ -62,7 +67,8 @@ export class OpenAIService implements LLMService {
             demonstratedStrengths: { items: [], score: 50 },
             gapResolutions: { items: [], score: 50 },
             postInterviewFitScore: 50,
-            rewrittenResume: selectedText.rewrittenResume
+            rewrittenResume: selectedText.rewrittenResume,
+            chatResponse: selectedText.chatResponse,
         });
     }
 
@@ -74,7 +80,7 @@ export class OpenAIService implements LLMService {
         return this.getMockResponse(language);
     }
 
-    async rewriteResumeForJob(jobInput: GeminiInput, resumeInput: GeminiInput, language: string): Promise<RewrittenResumeResult> {
+    async rewriteResumeForJob(jobInput: GeminiInput, resumeInput: GeminiInput, language: string, chatHistory: ChatTurn[]): Promise<RewrittenResumeResult> {
         return this.getMockResponse(language);
     }
 }

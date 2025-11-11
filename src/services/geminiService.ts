@@ -1,9 +1,12 @@
 
+
+
 import { GoogleGenAI } from "@google/genai";
 import {
     CandidateAnalysisResult,
     InterviewPerformanceResult,
     RewrittenResumeResult,
+    ChatTurn,
 } from '../types';
 import { LLMService, GeminiInput, buildContentPart } from './llmService';
 import { 
@@ -116,33 +119,48 @@ Your goal is to provide a complete performance review for the candidate based on
     async rewriteResumeForJob(
         jobInput: GeminiInput,
         resumeInput: GeminiInput,
-        language: string
+        language: string,
+        chatHistory: ChatTurn[]
     ): Promise<RewrittenResumeResult> {
-        const systemInstruction = `You are an expert resume writer. Your task is to rewrite a resume to better align with a specific job description, without fabricating information. Maintain a professional tone. The output language should be: ${language}. Your output must be in JSON and conform to the provided schema.`;
+        const systemInstruction = `You are an expert resume writer. Your task is to rewrite a resume to better align with a specific job description, potentially based on a user's conversational instructions. Your output must be in JSON and conform to the provided schema. The output language should be: ${language}.`;
 
         const jobPart = buildContentPart(jobInput);
         const resumePart = buildContentPart(resumeInput);
 
+        const historyText = chatHistory.map(turn => 
+            `${turn.role === 'user' ? 'User' : 'AI'}: ${turn.text}`
+        ).join('\n');
+
         const promptParts = [
-            { text: "Original Resume:" },
+            { text: "Original Resume (Source of Truth):" },
             resumePart,
             { text: "Target Job Description:" },
             jobPart,
+// FIX: Escaped the backticks inside the template literal to prevent syntax errors.
             { text: `
-Rewrite the provided resume using **Markdown formatting**.
-The goal is to emphasize skills and experiences from the original resume that are most relevant to the job description.
+**Task: Rewrite the Resume**
+
+Your main goal is to rewrite the **Original Resume** to emphasize skills and experiences most relevant to the **Target Job Description**. 
+Follow these strict rules:
 
 **Formatting Rules:**
-- Use Markdown headings for sections (e.g., '## Professional Experience', '## Skills').
+- Use Markdown headings (e.g., '## Professional Experience').
 - Use bold for job titles (e.g., '**Senior Project Manager**').
 - Use italics for company names and dates (e.g., '*Some Company | Jan 2020 - Present*').
-- Use bullet points ('-') for responsibilities and achievements under each role.
+- Use bullet points ('-') for responsibilities.
 
 **Content Rules:**
+- **CRITICAL: You MUST NOT add any new skills or experiences that are not present in the Original Resume. All information must be sourced from the Original Resume.**
 - Use keywords from the job description where appropriate and accurate.
 - Rephrase bullet points to highlight achievements and impact.
-- **CRITICAL: Do NOT add any new skills or experiences that are not present in the original resume. You must only use information provided in the original resume.**
-- The output should be the complete, rewritten resume text in a single Markdown string.`}
+
+**Conversational History (if any):**
+${historyText.length > 0 ? historyText : "No previous conversation."}
+
+**Your Instructions:**
+- If there is a conversation history, address the user's latest instruction. Your \`chatResponse\` should directly acknowledge their request. Then, generate the complete, updated resume in the \`rewrittenResume\` field.
+- If there is no history, this is the first rewrite. Your \`chatResponse\` should be a brief, welcoming sentence. Then, generate the rewritten resume.
+- The output must be the complete, rewritten resume text in a single Markdown string in the \`rewrittenResume\` field of the JSON.`}
         ];
 
         const response = await ai.models.generateContent({

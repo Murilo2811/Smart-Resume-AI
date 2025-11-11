@@ -1,4 +1,5 @@
 
+
 {
   "appTitle": "HireSight",
   "nav": {
@@ -129,8 +130,12 @@
   },
   "rewrite": {
     "title": "Your AI-Optimized Resume",
-    "subtitle": "This resume has been rewritten to highlight your most relevant skills and experiences for this specific role. Copy it or download it to use in your application.",
+    "subtitle": "This resume has been rewritten to highlight your most relevant skills and experiences for this specific role. Use the chat below to refine it further.",
     "loading": "Rewriting your resume..."
+  },
+  "chat": {
+    "placeholder": "e.g., Make the summary more concise...",
+    "button": "Send"
   },
   "interview": {
     "title": "Interview Performance Analysis",

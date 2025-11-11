@@ -1,9 +1,11 @@
 
+
 import {
     CandidateAnalysisResult,
     InterviewPerformanceResult,
     RewrittenResumeResult,
     LlmConfig,
+    ChatTurn,
 } from '../types';
 import { GeminiService } from './geminiService';
 import { OpenAIService } from './openaiService';
@@ -31,7 +33,7 @@ export const buildContentPart = (input: GeminiInput) => {
 export interface LLMService {
     analyzeForCandidate(jobInput: GeminiInput, resumeInput: GeminiInput, language: string): Promise<CandidateAnalysisResult>;
     analyzeInterviewPerformance(jobInput: GeminiInput, resumeInput: GeminiInput, interviewTranscript: string, compatibilityGaps: string[], language: string): Promise<InterviewPerformanceResult>;
-    rewriteResumeForJob(jobInput: GeminiInput, resumeInput: GeminiInput, language: string): Promise<RewrittenResumeResult>;
+    rewriteResumeForJob(jobInput: GeminiInput, resumeInput: GeminiInput, language: string, chatHistory: ChatTurn[]): Promise<RewrittenResumeResult>;
 }
 
 export const getLlmService = (config: LlmConfig): LLMService => {
