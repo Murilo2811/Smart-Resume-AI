@@ -15,14 +15,13 @@ import {
     rewrittenResumeSchema 
 } from './schemas';
 
-// Gemini API client setup
-const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
-
 export class GeminiService implements LLMService {
     private model: string;
+    private ai: GoogleGenAI;
 
     constructor(model: string) {
         this.model = model;
+        this.ai = new GoogleGenAI({apiKey: process.env.API_KEY});
     }
 
     async analyzeForCandidate(
@@ -52,7 +51,7 @@ export class GeminiService implements LLMService {
             resumePart,
         ];
 
-        const response = await ai.models.generateContent({
+        const response = await this.ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
@@ -101,7 +100,7 @@ Your goal is to provide a complete performance review for the candidate based on
             { text: `Previously identified compatibility gaps:\n- ${compatibilityGaps.join('\n- ')}` },
         ];
 
-        const response = await ai.models.generateContent({
+        const response = await this.ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
@@ -163,7 +162,7 @@ ${historyText.length > 0 ? historyText : "No previous conversation."}
 - The output must be the complete, rewritten resume text in a single Markdown string in the \`rewrittenResume\` field of the JSON.`}
         ];
 
-        const response = await ai.models.generateContent({
+        const response = await this.ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
