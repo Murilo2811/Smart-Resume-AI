@@ -12,14 +12,16 @@ import {
     rewrittenResumeSchema 
 } from './schemas';
 
-// Gemini API client setup
-const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
-
 export class GeminiService implements LLMService {
     private model: string;
+    private ai: GoogleGenAI;
 
     constructor(model: string) {
         this.model = model;
+        // Lazily initialize the AI client inside the constructor.
+        // This moves the potential error from module load time to render time,
+        // allowing the ErrorBoundary to catch it.
+        this.ai = new GoogleGenAI({apiKey: process.env.API_KEY});
     }
 
     async analyzeForCandidate(
@@ -49,7 +51,7 @@ export class GeminiService implements LLMService {
             resumePart,
         ];
 
-        const response = await ai.models.generateContent({
+        const response = await this.ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
@@ -98,7 +100,7 @@ Your goal is to provide a complete performance review for the candidate based on
             { text: `Previously identified compatibility gaps:\n- ${compatibilityGaps.join('\n- ')}` },
         ];
 
-        const response = await ai.models.generateContent({
+        const response = await this.ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
@@ -159,7 +161,7 @@ ${historyText ? `This is the conversation so far:\n${historyText}\n\nYour task i
 `}
         ];
 
-        const response = await ai.models.generateContent({
+        const response = await this.ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
