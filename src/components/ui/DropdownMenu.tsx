@@ -25,25 +25,32 @@ export const DropdownMenu: React.FC<{ children: React.ReactNode }> = ({ children
 };
 
 export const DropdownMenuTrigger: React.FC<{ children: React.ReactNode, asChild?: boolean }> = ({ children, asChild }) => {
-  const { setOpen } = useDropdownMenu();
-  const child = React.Children.only(children) as React.ReactElement;
-  
+  const { open, setOpen } = useDropdownMenu();
+  const child = React.Children.only(children);
+
   if (asChild) {
-      // FIX: Cast child to React.ReactElement<any> to allow passing additional props like onClick.
-      // The onClick handler now properly composes with any onClick prop on the child.
-      return React.cloneElement(child as React.ReactElement<any>, {
-          onClick: (event: React.MouseEvent<unknown>) => {
-              // Fix: Cast props to `any` to handle `onClick` from child, preventing a TypeScript error where props is `unknown`.
-              (child.props as any).onClick?.(event);
+      // Ensure the child is a valid React element before cloning.
+      // Fix: Broaden the type check to allow all HTML attributes, including aria-* attributes.
+      // This resolves the error about 'aria-expanded' being an unknown property.
+      if (!React.isValidElement<React.HTMLAttributes<HTMLElement>>(child)) {
+          return <>{child}</>;
+      }
+      
+      // Clone the child element, composing the onClick handlers in a type-safe way.
+      return React.cloneElement(child, {
+          onClick: (event: React.MouseEvent<HTMLElement>) => {
+              // Safely call the original onClick if it exists on the child's props.
+              child.props.onClick?.(event);
+              // Toggle the dropdown menu state.
               setOpen(o => !o);
           },
-          'aria-expanded': true,
+          'aria-expanded': open,
           'aria-haspopup': true,
       });
   }
   
   return (
-    <button onClick={() => setOpen(o => !o)} aria-expanded="true" aria-haspopup="true">
+    <button type="button" onClick={() => setOpen(o => !o)} aria-expanded={open} aria-haspopup="true">
       {children}
     </button>
   );

@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 import {
     CandidateAnalysisResult,
@@ -13,13 +12,14 @@ import {
     rewrittenResumeSchema 
 } from './schemas';
 
+// Gemini API client setup
+const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+
 export class GeminiService implements LLMService {
     private model: string;
-    private ai: GoogleGenAI;
 
     constructor(model: string) {
         this.model = model;
-        this.ai = new GoogleGenAI({apiKey: process.env.API_KEY});
     }
 
     async analyzeForCandidate(
@@ -49,7 +49,7 @@ export class GeminiService implements LLMService {
             resumePart,
         ];
 
-        const response = await this.ai.models.generateContent({
+        const response = await ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
@@ -98,7 +98,7 @@ Your goal is to provide a complete performance review for the candidate based on
             { text: `Previously identified compatibility gaps:\n- ${compatibilityGaps.join('\n- ')}` },
         ];
 
-        const response = await this.ai.models.generateContent({
+        const response = await ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
@@ -143,28 +143,28 @@ Follow these strict rules:
 - Use Markdown headings (e.g., '## Professional Experience').
 - Use bold for job titles (e.g., '**Senior Project Manager**').
 - Use italics for company names and dates (e.g., '*Some Company | Jan 2020 - Present*').
-- Use bullet points ('-') for responsibilities.
+- Use bullet points ('-') for responsibilities and achievements.
 
 **Content Rules:**
-- **CRITICAL: You MUST NOT add any new skills or experiences that are not present in the Original Resume. All information must be sourced from the Original Resume.**
+- **CRITICAL: NEVER INVENT INFORMATION.** You must only use skills, experiences, and details explicitly present in the **Original Resume**. Do not add anything new.
+- Rephrase bullet points to highlight achievements and impact relevant to the job.
 - Use keywords from the job description where appropriate and accurate.
-- Rephrase bullet points to highlight achievements and impact.
 
-**Conversational History (if any):**
-${historyText.length > 0 ? historyText : "No previous conversation."}
+**Conversational Context:**
+${historyText ? `This is the conversation so far:\n${historyText}\n\nYour task is to generate a NEW version of the resume based on the user's LAST message, keeping the conversation history in mind.` : "This is the first time you are writing this resume."}
 
-**Your Instructions:**
-- If there is a conversation history, address the user's latest instruction. Your 'chatResponse' should directly acknowledge their request. Then, generate the complete, updated resume in the 'rewrittenResume' field.
-- If there is no history, this is the first rewrite. Your 'chatResponse' should be a brief, welcoming sentence. Then, generate the rewritten resume.
-- The output must be the complete, rewritten resume text in a single Markdown string in the 'rewrittenResume' field of the JSON.`}
+**Your Response:**
+- Your 'chatResponse' must directly acknowledge the user's request in a helpful, conversational tone.
+- The rewritten resume must be placed in the 'rewrittenResume' field.
+`}
         ];
 
-        const response = await this.ai.models.generateContent({
+        const response = await ai.models.generateContent({
             model: this.model,
             contents: { parts: promptParts },
             config: {
                 systemInstruction,
-                temperature: 0.2,
+                temperature: 0.4,
                 responseMimeType: "application/json",
                 responseSchema: rewrittenResumeSchema,
             },
