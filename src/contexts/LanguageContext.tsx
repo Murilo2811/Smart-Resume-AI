@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 type Language = 'en' | 'pt' | 'es';
-type Translations = { [key: string]: string };
+type Translations = { [key: string]: any };
 
 interface LanguageContextType {
   language: Language;
@@ -70,7 +70,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
         result = result?.[k];
         if (result === undefined) return key;
     }
-    return result || key;
+    return typeof result === 'string' ? result : key;
   };
   
   if (isLoading) {
